@@ -7,7 +7,7 @@ class Tarefa(models.Model):
     descricao = models.TextField()
     estado = models.CharField(max_length=10, default="Afazer")
     dtstatus = models.DateTimeField(default=timezone.now)
-    dtprazo = models.DateTimeField()
+    dtprazo = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.titulo + " - " + self.estado
