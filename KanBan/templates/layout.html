@@ -1,0 +1,36 @@
+{% load static %}
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Tarefas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+</head>
+<body>
+    <div class="ui attached stackable menu">
+        <div class="ui container">
+            <a class="item" href="/">
+                <i class="grid layout icon"></i> Dashboard
+            </a>
+            <a class="item" href="/new">
+                <i class="add icon"></i> Nova tarefa
+            </a>
+{#            <div class="ui simple dropdown item"> More#}
+{#              <i class="dropdown icon"></i>#}
+{#                <div class="menu">#}
+{#                    <a class="item"><i class="edit icon"></i> Edit Profile</a>#}
+{#                    <a class="item"><i class="globe icon"></i> Choose Language</a>#}
+{#                    <a class="item"><i class="settings icon"></i> Account Settings</a>#}
+{#                </div>#}
+{#            </div>#}
+            <div class="right item">
+                <strong><em>My Kanban</em></strong>
+{#                <div class="ui input"><input type="text" placeholder="Search..."></div>#}
+            </div>
+        </div>
+    </div>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

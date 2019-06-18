@@ -1,0 +1,29 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <style>
+        main {
+            padding: 5px;
+            height: 100%;
+        }
+        .container > #Afazer, #Fazendo, #Concluido {
+            margin: 14px 7px 14px 7px;
+        }
+        .column {
+            width: auto !important;
+        }
+        .column > h1 {
+            text-align: center;
+        }
+    </style>
+    <main>
+        <div class="ui four column doubling stackable grid container" style="justify-content: space-around;">
+            <div class="column">
+                <h1><em>Nova Tarefa</em></h1>
+                <form method="POST" class="ui form">{% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="ui primary button">Save</button>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock %}
