@@ -8,7 +8,7 @@ def index(request):
     Afazer = Tarefa.objects.filter(estado="Afazer")
     Fazendo = Tarefa.objects.filter(estado="Fazendo")
     Concluido = Tarefa.objects.filter(estado="Concluido")
-    return render(request, 'index.html', {'Afazer': Afazer, "Fazendo": Fazendo, "Concluido": Concluido})
+    return render(request, 'index.html', {"Afazer": Afazer, "Fazendo": Fazendo, "Concluido": Concluido})
 
 
 def newTarefa(request):
@@ -24,15 +24,11 @@ def newTarefa(request):
 
 def upEstado(request, pk):
     tarefa = Tarefa.objects.get(pk=pk)
-    print(tarefa)
     if tarefa.estado == "Afazer":
-        print(tarefa.estado)
         tarefa.estado = "Fazendo"
-        print(tarefa.estado)
     elif tarefa.estado == "Fazendo":
         tarefa.estado = "Concluido"
     tarefa.save()
-    print(tarefa)
     return redirect('/')
 
 
