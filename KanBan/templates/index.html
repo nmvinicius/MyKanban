@@ -1,15 +1,27 @@
 {% extends 'layout.html' %}
-{% block content %}
+{% block head %}
     <style>
-        main {
-            padding: 5px;
+        body {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
-        .container > #Afazer, #Fazendo, #Concluido {
+        main {
+            flex: 2;
+            margin-top: 15px;
+        }
+        .container {
+            justify-content: center !important;
+            flex-wrap: nowrap !important;
+        }
+        .container > #Afazer, #Planejando, #Fazendo, #Concluido {
             margin: 14px 7px 14px 7px;
             min-width: 318px;
             border-radius: 5px;
+            height: 89vh;
         }
         #Afazer {background-color: rgba(255, 0, 0, .3);}
+        #Planejando {background-color: rgba(128, 128, 128, .3)}
         #Fazendo {background-color: rgba(255, 255, 0, .3);}
         #Concluido {background-color: rgba(0, 255, 0, .3);}
         .column {
@@ -17,82 +29,111 @@
         }
         .column > h1 {
             text-align: center;
+            cursor: pointer;
         }
     </style>
-    <main>
-        <div class="ui four column doubling stackable grid container" style="justify-content: center;">
-            <div class="column" id="Afazer">
-                <h1><em>Afazer</em></h1>
-                {% for tarefa in Afazer %}
-                    <div class="ui card" style="min-height: 110px; min-width: 290px; display: block;">
-                        <div class="content">
-                            <div class="header">{{ tarefa.titulo }}</div>
-                            <div class="meta">{{ tarefa.dtcriacao }}</div>
-                        </div>
-                        <div class="description">
-                            <p style="padding-left: 15px;">{{ tarefa.descricao }}</p>
-                        </div>
-                        <div class="extra content">
-                            <a class="left floated" href="{% url 'delTarefa' pk=tarefa.pk %}">
-                                <i class="trash icon"></i>
-                                Excluir
-                            </a>
-                            <a class="right floated" href="{% url 'upEstado' pk=tarefa.pk %}">
-                                <i class="rocket icon"></i>
-                                Start
-                            </a>
-                        </div>
+{% endblock %}
+
+{% block content %}
+    <div class="ui four column doubling stackable grid container">
+        <div class="column" id="Afazer">
+            <h1><em>AFazer</em></h1>
+            {% for tarefa in Afazer %}
+                <div class="ui card" style="min-height: 110px; min-width: 290px; display: block;">
+                    <div class="content">
+                        <div class="header">{{ tarefa.titulo }}</div>
+                        <div class="meta">{{ tarefa.dtcriacao }}</div>
                     </div>
-                {% endfor %}
-            </div>
-            <div class="column" id="Fazendo">
-                <h1><em>Fazendo</em></h1>
-                {% for tarefa in Fazendo %}
-                    <div class="ui card" style="min-height: 110px; min-width: 290px;">
-                        <div class="content">
-                            <div class="header">{{ tarefa.titulo }}</div>
-                            <div class="meta">{{ tarefa.dtcriacao }}</div>
-                        </div>
-                        <div class="description">
-                            <p style="padding-left: 15px;">{{ tarefa.descricao }}</p>
-                        </div>
-                        <div class="extra content">
-                            <a class="left floated" href="{% url 'delTarefa' pk=tarefa.pk %}">
-                                <i class="trash icon"></i>
-                                Excluir
-                            </a>
-                            <a class="right floated" href="{% url 'upEstado' pk=tarefa.pk %}">
-                                <i class="check icon"></i>
-                                Concluir
-                            </a>
-                        </div>
+                    <div class="description">
+                        <p style="padding-left: 15px;">{{ tarefa.descricao }}</p>
                     </div>
-                {% endfor %}
-            </div>
-            <div class="column" id="Concluido">
-                <h1><em>Concluido</em></h1>
-                {% for tarefa in Concluido %}
-                    <div class="ui card" style="min-height: 110px; min-width: 290px;">
-                        <div class="content">
-                            <div class="header">{{ tarefa.titulo }}</div>
-                            <div class="meta">{{ tarefa.dtcriacao }}</div>
-                        </div>
-                        <div class="description">
-                            <p style="padding-left: 15px;">{{ tarefa.descricao }}</p>
-                        </div>
-                        <div class="extra content">
-                            <a class="left floated" href="{% url 'delTarefa' pk=tarefa.pk %}">
-                                <i class="trash icon"></i>
-                                Excluir
-                            </a>
-                            <a class="right floated">
-                                <i class="check circle outline icon"></i>
-                                Finalizado
-                            </a>
-                        </div>
+                    <div class="extra content">
+                        <a class="left floated" href="{% url 'delTarefa' pk=tarefa.pk %}">
+                            <i class="trash icon"></i>
+                            Excluir
+                        </a>
+                        <a class="right floated" href="{% url 'upEstado' pk=tarefa.pk %}">
+                            <i class="rocket icon"></i>
+                            Planejar
+                        </a>
                     </div>
-                {% endfor %}
-            </div>
+                </div>
+            {% endfor %}
         </div>
-    </main>
+        <div class="column" id="Planejando">
+            <h1><em>Planejando</em></h1>
+            {% for tarefa in Planejando %}
+                <div class="ui card" style="min-height: 110px; min-width: 290px;">
+                    <div class="content">
+                        <div class="header">{{ tarefa.titulo }}</div>
+                        <div class="meta">{{ tarefa.dtcriacao }}</div>
+                    </div>
+                    <div class="description">
+                        <p style="padding-left: 15px;">{{ tarefa.descricao }}</p>
+                    </div>
+                    <div class="extra content">
+                        <a class="left floated" href="{% url 'delTarefa' pk=tarefa.pk %}">
+                            <i class="trash icon"></i>
+                            Excluir
+                        </a>
+                        <a class="right floated" href="{% url 'upEstado' pk=tarefa.pk %}">
+                            <i class="check icon"></i>
+                            Start
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="column" id="Fazendo">
+            <h1><em>Fazendo</em></h1>
+            {% for tarefa in Fazendo %}
+                <div class="ui card" style="min-height: 110px; min-width: 290px;">
+                    <div class="content">
+                        <div class="header">{{ tarefa.titulo }}</div>
+                        <div class="meta">{{ tarefa.dtcriacao }}</div>
+                    </div>
+                    <div class="description">
+                        <p style="padding-left: 15px;">{{ tarefa.descricao }}</p>
+                    </div>
+                    <div class="extra content">
+                        <a class="left floated" href="{% url 'delTarefa' pk=tarefa.pk %}">
+                            <i class="trash icon"></i>
+                            Excluir
+                        </a>
+                        <a class="right floated" href="{% url 'upEstado' pk=tarefa.pk %}">
+                            <i class="check icon"></i>
+                            Concluir
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="column" id="Concluido">
+            <h1><em>Concluido</em></h1>
+            {% for tarefa in Concluido %}
+                <div class="ui card" style="min-height: 110px; min-width: 290px;">
+                    <div class="content">
+                        <div class="header">{{ tarefa.titulo }}</div>
+                        <div class="meta">{{ tarefa.dtcriacao }}</div>
+                    </div>
+                    <div class="description">
+                        <p style="padding-left: 15px;">{{ tarefa.descricao }}</p>
+                    </div>
+                    <div class="extra content">
+                        <a class="left floated" href="{% url 'delTarefa' pk=tarefa.pk %}">
+                            <i class="trash icon"></i>
+                            Excluir
+                        </a>
+                        <a class="right floated">
+                            <i class="check circle outline icon"></i>
+                            Finalizado
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script>
+        $('#Afazer #Planejando #Fazendo #Concluido').css('min-height', )
+    </script>
 {% endblock %}

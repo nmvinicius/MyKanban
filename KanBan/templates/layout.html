@@ -6,31 +6,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    {% block head %}
+    {% endblock %}
 </head>
 <body>
-    <div class="ui attached stackable menu">
+    <header class="ui attached stackable menu">
         <div class="ui container">
-            <a class="item" href="/">
+            <div class="ui item">
+                <i class="user icon"></i>
+                {{ user.first_name }} {{ user.last_name }}
+            </div>
+            <a class="ui item" href="{% url 'index' %}">
                 <i class="grid layout icon"></i> Dashboard
             </a>
-            <a class="item" href="/new">
+            <a class="ui item" href="{% url 'newTarefa' %}">
                 <i class="add icon"></i> Nova tarefa
             </a>
-{#            <div class="ui simple dropdown item"> More#}
-{#              <i class="dropdown icon"></i>#}
-{#                <div class="menu">#}
-{#                    <a class="item"><i class="edit icon"></i> Edit Profile</a>#}
-{#                    <a class="item"><i class="globe icon"></i> Choose Language</a>#}
-{#                    <a class="item"><i class="settings icon"></i> Account Settings</a>#}
-{#                </div>#}
-{#            </div>#}
-            <div class="right item">
-                <strong><em>My Kanban</em></strong>
-{#                <div class="ui input"><input type="text" placeholder="Search..."></div>#}
-            </div>
+            <a class="ui right item" href="{% url 'logout' %}">
+                <i class="power off icon"></i> Logout
+            </a>
         </div>
-    </div>
-    {% block content %}
-    {% endblock %}
+    </header>
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
 </body>
 </html>

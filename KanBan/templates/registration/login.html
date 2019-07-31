@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+    <style rel="stylesheet" type="text/css">
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #formcard {
+            {#height: 300px;#}
+            width: 300px;
+            padding: 15px;
+            background-color: rgba(0, 0, 0, .3);
+            border-radius: 5px;
+        }
+        #formcard > h1 {
+            text-align: center;
+        }
+        form, h1 {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div id="formcard">
+        <h1>Login</h1>
+        <form class="ui form" action="." method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="ui animated fluid button" type="submit">
+                <div class="visible content">Logar</div>
+                <div class="hidden content">
+                    <i class="right arrow icon"></i>
+                </div>
+            </button>
+        </form>
+    </div>
+</body>
+</html>
